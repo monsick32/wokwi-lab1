@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": -38.4, "left": -52.76, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -13.2,
+      "left": -188.2,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led2",
+      "top": -32.4,
+      "left": -130.6,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -22.8,
+      "left": -159.4,
+      "attrs": { "color": "blue" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 120,
+      "left": -202.15,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r2",
+      "top": 100.8,
+      "left": -173.35,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": 91.2,
+      "left": -144.55,
+      "rotate": 90,
+      "attrs": { "value": "1000" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "r3:1", "led2:C", "black", [ "v0", "h-9.6" ] ],
+    [ "r2:1", "led3:C", "black", [ "v0", "h-48" ] ],
+    [ "r1:1", "led1:C", "black", [ "v0", "h-96" ] ],
+    [ "esp:32", "led2:A", "green", [ "h0" ] ],
+    [ "esp:GND.1", "r1:2", "black", [ "h-28.65", "v38.4", "h-9.6" ] ],
+    [ "esp:GND.1", "r3:2", "black", [ "h-28.65", "v19.2" ] ],
+    [ "esp:GND.1", "r2:2", "black", [ "h-28.65", "v28.8" ] ],
+    [ "esp:33", "led3:A", "green", [ "h0" ] ],
+    [ "esp:25", "led1:A", "green", [ "v0", "h-115.05" ] ]
+  ],
+  "dependencies": {}
+}
+void setup() {
+  Serial.begin(115200);
+  pinMode(32, OUTPUT);
+  pinMode(33, OUTPUT);
+  pinMode(25, OUTPUT);
+
+  Serial.println("");
+  Serial.println("hello, this is the furry detector");
+  Serial.println("the LEDs flash when a furry is neardy");
+  Serial.println("furry detection");
+}
+
+void loop() {
+  digitalWrite(32, HIGH);
+  delay(500);
+  digitalWrite(32, LOW);
+
+  digitalWrite(33, HIGH);
+  delay(500);
+  digitalWrite(33, LOW);
+
+  digitalWrite(25, HIGH);
+  delay(500);
+  digitalWrite(25, LOW);
+}
+
+Downloaded from https://wokwi.com/projects/480849320312139777
+
+Simulate this project on https://wokwi.com
